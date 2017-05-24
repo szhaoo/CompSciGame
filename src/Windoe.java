@@ -16,5 +16,4 @@ public class Windoe
     clifford.setDefaultCloseOperation(3);
   }
 
-
 }
