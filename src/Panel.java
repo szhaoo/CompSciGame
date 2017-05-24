@@ -23,7 +23,7 @@ public class Panel extends JPanel
   
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    g.drawImage(img, 400, 250, this);
+    g.drawImage(img, 250, 420, this); // Ha 420
   }
 
 }
