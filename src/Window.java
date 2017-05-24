@@ -6,7 +6,7 @@ public class Window
   public static void main(String[] args)
   {
     JFrame clifford = new JFrame("Clifford");
-    clifford.setSize(650,500);
+    clifford.setSize(750,600);
     Panel back = new Panel();
     clifford.add(back);
     clifford.setDefaultCloseOperation(3);
