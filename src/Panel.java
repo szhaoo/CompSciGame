@@ -13,17 +13,17 @@ public class Panel extends JPanel
   public Panel(){
     setBackground(new Color(25, 170, 200));
     try {
-      img = ImageIO.read(new File("sugar.tif"));
+      img = ImageIO.read(new File("sugar.png"));
     }catch(IOException e){
       System.out.println("Bad Image");
       System.exit(1);
     }
   }
   
+  
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     g.drawImage(img, 400, 250, this);
-    
   }
 
 }
