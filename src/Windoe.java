@@ -1,11 +1,20 @@
+import java.awt.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Windoe
 {
 
   public static void main(String[] args)
   {
-    // TODO Auto-generated method stub
-
+    JFrame clifford = new JFrame("Clifford");
+    clifford.setVisible(true);
+    clifford.setSize(650,500);
+    Panel back = new Panel();
+    clifford.add(back);
+    clifford.setDefaultCloseOperation(3);
   }
+
 
 }
