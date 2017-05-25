@@ -39,19 +39,31 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   public void actionPerformed(ActionEvent e){
     step();
   }
+
   public void step(){
-    x += speed;
+      x += speed;
+    if( x > 750) {
+        x = 0;
+    }
+    if(x < 0){
+        x = 750;
+    }
     repaint();
   }
   public void keyTyped(KeyEvent e) {
   }
   public void keyPressed(KeyEvent e) {
-      if(e.getKeyCode() == 37){
-          x += speed
-      }else if(e.getKeyCode() == 39){
-
+      if(e.getKeyCode() == 39){ // Right Arrow
+          speed = 5;
+      }else if(e.getKeyCode() == 37){ // Left Arrow
+          speed = -5;
       }
   }
   public void keyReleased(KeyEvent e) {
+      if(e.getKeyCode() == 39 && speed == 5){ // Right Arrow
+          speed = 0;
+      }else if(e.getKeyCode() == 37 && speed == -5){ // Left Arrow
+          speed = 0;
+      }
   }
 }
