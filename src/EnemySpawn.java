@@ -23,6 +23,7 @@ public class EnemySpawn
   }
   public void draw(java.awt.Graphics g){
     for(MovingObject object : enemyList){
+      object.update();
       g.drawImage(object.img, object.x, object.y, null);
     }
   }
