@@ -15,6 +15,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
 {
   int x = 350;
   private static final int Y = 500;
+  private int speed = 0;
   BufferedImage img;
   public Panel(){
     setBackground(new Color(25, 170, 200));
@@ -39,6 +40,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     step();
   }
   public void step(){
+    x += speed;
     repaint();
   }
   public void keyTyped(KeyEvent e) {
