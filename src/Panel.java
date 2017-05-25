@@ -27,7 +27,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     addKeyListener(this);
     Timer timer = new Timer(1000/60, this);
     timer.start();
-    requestFocus(); //penis
+    requestFocus();
   }
   
   
