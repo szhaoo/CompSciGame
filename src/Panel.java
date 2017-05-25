@@ -17,6 +17,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   private static final int Y = 500;
   private int speed = 0;
   BufferedImage img;
+  public EnemySpawn spawner;
   public Panel(){
     setBackground(new Color(25, 170, 200));
     try {
@@ -28,12 +29,14 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     addKeyListener(this);
     Timer timer = new Timer(1000/60, this);
     timer.start();
+    spawner = new EnemySpawn();
   }
   
   
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    g.drawImage(img, x, Y, this); // Ha 420
+    g.drawImage(img, x, Y, this);
+    spawner.draw(g);
   }
   
   public void actionPerformed(ActionEvent e){
@@ -48,6 +51,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     if(x < 0){
         x = 750;
     }
+    spawner.update();
     repaint();
   }
   public void keyTyped(KeyEvent e) {
