@@ -8,15 +8,15 @@ public class EnemySpawn
     enemyList = new ArrayList<MovingObject>();
   }
   public void update(){
-    if ((int)(Math.random() * 60) == 1)
+    if ((int)(Math.random() * 100) == 1)
     {
        enemyList.add(new Seaweed("seaweed.png"));
     }
-    else if ((int)(Math.random() * 60) == 2)
+    else if ((int)(Math.random() * 100) == 2)
     {
        enemyList.add(new Fishstick("fishstick.png"));
     }
-    else if ((int)(Math.random() * 60) == 3)
+    else if ((int)(Math.random() * 100) == 3)
     {
        enemyList.add(new Wave("wave.png"));
     }

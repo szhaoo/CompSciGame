@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class Panel extends JPanel implements ActionListener, KeyListener
 {
   int x = 350;
-  private static final int Y = 500;
+  private static final int Y = 475;
   private int speed = 0;
   BufferedImage img;
   public EnemySpawn spawner;
