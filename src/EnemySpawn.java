@@ -25,6 +25,9 @@ public class EnemySpawn
     for(MovingObject object : enemyList){
       object.update();
       g.drawImage(object.img, object.x, object.y, null);
+      if(object.y > 750){
+        enemyList.remove(object);
+      }
     }
   }
 }
