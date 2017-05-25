@@ -11,6 +11,7 @@ public class Window
     clifford.add(back);
     clifford.setDefaultCloseOperation(3);
     clifford.setVisible(true);
+    back.requestFocus();
   }
 
 }

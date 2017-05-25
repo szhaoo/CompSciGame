@@ -27,7 +27,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     addKeyListener(this);
     Timer timer = new Timer(1000/60, this);
     timer.start();
-    requestFocus(); //penis
   }
   
   
@@ -45,7 +44,11 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   public void keyTyped(KeyEvent e) {
   }
   public void keyPressed(KeyEvent e) {
-    System.out.println(e.getKeyCode());
+      if(e.getKeyCode() == 37){
+          x += speed
+      }else if(e.getKeyCode() == 39){
+
+      }
   }
   public void keyReleased(KeyEvent e) {
   }
