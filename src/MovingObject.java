@@ -9,6 +9,9 @@ public abstract class MovingObject
   public void update(){
     y += SPEED;
   };
-  
-  
+  public boolean DetectHit(int x, int y)
+  {
+    return (Math.abs(this.x - x) <= 10 && Math.abs(this.y - y) <= 10);
+    
+  }
 }

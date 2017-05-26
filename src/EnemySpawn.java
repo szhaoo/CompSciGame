@@ -22,11 +22,12 @@ public class EnemySpawn
     }
   }
   public void draw(java.awt.Graphics g){
-    for(MovingObject object : enemyList){
-      object.update();
-      g.drawImage(object.img, object.x, object.y, null);
-      if(object.y > 750){
-        enemyList.remove(object);
+    for(int i = 0; i < enemyList.size(); i++){
+      enemyList.get(i).update();
+      g.drawImage(enemyList.get(i).img, enemyList.get(i).x, enemyList.get(i).y, null);
+      if(enemyList.get(i).y > 600){
+        enemyList.remove(enemyList.get(i));
+        i--;
       }
     }
   }
