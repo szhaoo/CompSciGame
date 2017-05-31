@@ -14,8 +14,11 @@ import javax.swing.JPanel;
 public class Panel extends JPanel implements ActionListener, KeyListener
 {
   int x = 350;
-  private static final int Y = 500;
+  private static final int Y = 475;
+  private int speed = 0;
+  public int health = 92;
   BufferedImage img;
+  public EnemySpawn spawner;
   public Panel(){
     setBackground(new Color(25, 170, 200));
     try {
@@ -27,26 +30,51 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     addKeyListener(this);
     Timer timer = new Timer(1000/60, this);
     timer.start();
-    requestFocus();
+    spawner = new EnemySpawn();
   }
   
   
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    g.drawImage(img, x, Y, this); // Ha 420
+    g.setColor(Color.BLACK);
+    g.fillRect(2, 2, 100, 50);
+    g.setColor(Color.white);
+    g.fillRect(6, 6, 92, 42);
+    g.setColor(Color.GREEN);
+    g.fillRect(6, 6, health, 42);
+    g.drawImage(img, x, Y, this);
+    spawner.draw(g);
   }
   
   public void actionPerformed(ActionEvent e){
     step();
   }
+
   public void step(){
+      x += speed;
+    if( x > 750) {
+        x = 0;
+    }
+    if(x < 0){
+        x = 750;
+    }
+    spawner.update();
     repaint();
   }
   public void keyTyped(KeyEvent e) {
   }
   public void keyPressed(KeyEvent e) {
-    System.out.println(e.getKeyCode());
+      if(e.getKeyCode() == 39){ // Right Arrow
+          speed = 5;
+      }else if(e.getKeyCode() == 37){ // Left Arrow
+          speed = -5;
+      }
   }
   public void keyReleased(KeyEvent e) {
+      if(e.getKeyCode() == 39 && speed == 5){ // Right Arrow
+          speed = 0;
+      }else if(e.getKeyCode() == 37 && speed == -5){ // Left Arrow
+          speed = 0;
+      }
   }
 }
