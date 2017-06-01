@@ -42,7 +42,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     g.setColor(Color.GREEN);
     g.fillRect(6, 6, spawner.getHealth(), 42);
     g.drawImage(img, x, Y, this);
-    spawner.draw(g);
+    spawner.draw(g, x, Y);
   }
   
   public void actionPerformed(ActionEvent e){

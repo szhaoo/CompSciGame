@@ -4,7 +4,6 @@ import java.io.IOException;
 public class Wave extends MovingObject
 {
   public Wave(String imgLoc){
-    super(3);
     super.x = (int)(Math.random() * 750);
     try{
       img = javax.imageio.ImageIO.read(new File(imgLoc));

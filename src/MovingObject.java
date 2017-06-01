@@ -5,7 +5,12 @@ public abstract class MovingObject
   BufferedImage img;
   public  int x;
   public int y = 0;
-  public static final int SPEED = 3; 
+  public static final int SPEED = 3;
+  public int type;
+  public MovingObject(int type)
+  {
+    this.type = type;
+  }
   public void update(){
     y += SPEED;
   };
