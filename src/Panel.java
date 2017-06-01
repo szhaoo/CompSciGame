@@ -16,7 +16,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   int x = 350;
   private static final int Y = 475;
   private int speed = 0;
-  public int health = 92;
   BufferedImage img;
   public EnemySpawn spawner;
   public Panel(){
@@ -41,7 +40,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     g.setColor(Color.white);
     g.fillRect(6, 6, 92, 42);
     g.setColor(Color.GREEN);
-    g.fillRect(6, 6, health, 42);
+    g.fillRect(6, 6, spawner.getHealth(), 42);
     g.drawImage(img, x, Y, this);
     spawner.draw(g);
   }

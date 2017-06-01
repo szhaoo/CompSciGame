@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class EnemySpawn
 {
+  private int health = 92;
   public ArrayList<MovingObject> enemyList;
   public EnemySpawn()
   {
@@ -30,5 +31,13 @@ public class EnemySpawn
         i--;
       }
     }
+  }
+  public int getHealth()
+  {
+    return health;
+  }
+  public void setHealth(int health)
+  {
+    this.health = health;
   }
 }
