@@ -15,11 +15,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   int x = 350;
   private static final int Y = 475;
   private int speed = 0;
-  BufferedImage img;
-  BufferedImage imgWin;
+  private BufferedImage img;
+  private BufferedImage imgWin;
   public EnemySpawn spawner;
   private JLabel score;
   private JLabel win;
+  private JButton replay;
   public Panel(){
     setBackground(new Color(25, 170, 200));
     try {
@@ -44,6 +45,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     super.paintComponent(g);
     if(!spawner.gameover)
     {
+      replay = null;
       g.setColor(Color.BLACK);
       g.fillRect(2, 2, 100, 50);
       g.setColor(Color.white);
@@ -58,7 +60,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     {
       score.setText("");
       setBackground(Color.WHITE);
-      if(spawner.points >= 1)
+      if(spawner.points >= 25)
       {
         win.setText("You win!");
         try {
@@ -79,8 +81,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener
         g.drawImage(imgWin, 350, 490, this);
       }
       win.setFont(new Font("Monotype Corsiva",1,40));
-      JButton replay = new JButton();
-      add(replay, BorderLayout.SOUTH);
       
     }
   }

@@ -6,7 +6,7 @@ public class Window
   public static void main(String[] args)
   {
     JFrame clifford = new JFrame("Eat the fishsticks");
-    clifford.setSize(750,600);
+    clifford.setSize(750, 600);
     Panel back = new Panel();
     clifford.add(back);
     clifford.setDefaultCloseOperation(3);

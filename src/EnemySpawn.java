@@ -43,7 +43,7 @@ public class EnemySpawn
         {
           points++;
           playerSpeed = 5;//speed return to normal
-          if(points == 1){
+          if(points == 25){
             gameover = true;
           }
         }
