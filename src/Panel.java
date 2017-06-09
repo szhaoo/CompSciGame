@@ -1,7 +1,4 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,10 +6,9 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.Timer;
+import javax.swing.*;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 public class Panel extends JPanel implements ActionListener, KeyListener
 {
@@ -20,6 +16,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   private static final int Y = 475;
   private int speed = 0;
   BufferedImage img;
+  BufferedImage imgWin;
   public EnemySpawn spawner;
   private JLabel score;
   private JLabel win;
@@ -35,10 +32,11 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     Timer timer = new Timer(1000/60, this);
     timer.start();
     spawner = new EnemySpawn();
-    score = new JLabel("Points: " + spawner.points);
-    add(score);
-    win = new JLabel();
-    add(win);
+    setLayout(new BorderLayout());
+    score = new JLabel("Points: " + spawner.points, SwingConstants.CENTER);
+    add(score, BorderLayout.NORTH);
+    win = new JLabel("",  SwingConstants.CENTER);
+    add(win, BorderLayout.CENTER );
   }
   
   
@@ -63,10 +61,27 @@ public class Panel extends JPanel implements ActionListener, KeyListener
       if(spawner.points >= 1)
       {
         win.setText("You win!");
-      }else{
+        try {
+          imgWin = ImageIO.read(new File("goodJob.jpg"));
+        }catch(IOException e){
+          System.out.println("Bad Image");
+          System.exit(1);
+        }
+        g.drawImage(imgWin, 350, 490, this);
+      }else {
         win.setText("You Lose :(");
+        try {
+          imgWin = ImageIO.read(new File("badJob.jpg"));
+        } catch (IOException e) {
+          System.out.println("Bad Image");
+          System.exit(1);
+        }
+        g.drawImage(imgWin, 350, 490, this);
       }
       win.setFont(new Font("Monotype Corsiva",1,40));
+      JButton replay = new JButton();
+      add(replay, BorderLayout.SOUTH);
+      
     }
   }
   
