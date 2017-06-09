@@ -4,21 +4,24 @@ public class EnemySpawn
 {
   private int health = 92;
   public int points = 0;
+  public int playerSpeed = 5;
+  public boolean gameover = false;
   public ArrayList<MovingObject> enemyList;
   public EnemySpawn()
   {
     enemyList = new ArrayList<MovingObject>();
   }
   public void update(){
-    if ((int)(Math.random() * 100) == 1)
+    int random = (int)(Math.random()*200);
+    if (random == 1 || random == 2 || random == 7)
     {
        enemyList.add(new Seaweed("seaweed.png"));
     }
-    else if ((int)(Math.random() * 100) == 2)
+    else if (random == 3)
     {
        enemyList.add(new Fishstick("fishstick.png"));
     }
-    else if ((int)(Math.random() * 100) == 3)
+    else if (random == 4 || random == 5 || random == 6)
     {
        enemyList.add(new Wave("wave.png"));
     }
@@ -29,26 +32,34 @@ public class EnemySpawn
       enemyList.get(i).update();
       g.drawImage(enemyList.get(i).img, enemyList.get(i).x, enemyList.get(i).y, null);
       if(enemyList.get(i).y > 600){
-        enemyList.remove(enemyList.get(i));
-        i--;
+        enemyList.remove(i);
+        if(i > 0){
+          i--;
+        }
       }
       if (enemyList.get(i).detectHit(x, y))
       {
         if (enemyList.get(i).type == 1)
         {
           points++;
-          //speed return to normal
-          
+          playerSpeed = 5;//speed return to normal
+          if(points == 1){
+            gameover = true;
+          }
         }
         if (enemyList.get(i).type == 2)
         {
           health -= 9;
+          if (health <= 0)
+          {
+            gameover = true;
+          }
         }
         if (enemyList.get(i).type == 3)
         {
-          speed = speed / 2;
+          playerSpeed = 3;
         }
-        enemyList.remove(enemyList.get(i));
+        enemyList.remove(i);
         i--;
       }
     }

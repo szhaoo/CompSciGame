@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import javax.swing.Timer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class Panel extends JPanel implements ActionListener, KeyListener
 {
@@ -18,6 +21,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   private int speed = 0;
   BufferedImage img;
   public EnemySpawn spawner;
+  private JLabel score;
+  private JLabel win;
   public Panel(){
     setBackground(new Color(25, 170, 200));
     try {
@@ -30,19 +35,39 @@ public class Panel extends JPanel implements ActionListener, KeyListener
     Timer timer = new Timer(1000/60, this);
     timer.start();
     spawner = new EnemySpawn();
+    score = new JLabel("Points: " + spawner.points);
+    add(score);
+    win = new JLabel();
+    add(win);
   }
   
   
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    g.setColor(Color.BLACK);
-    g.fillRect(2, 2, 100, 50);
-    g.setColor(Color.white);
-    g.fillRect(6, 6, 92, 42);
-    g.setColor(Color.GREEN);
-    g.fillRect(6, 6, spawner.getHealth(), 42);
-    g.drawImage(img, x, Y, this);
-    spawner.draw(g, x, Y);
+    if(!spawner.gameover)
+    {
+      g.setColor(Color.BLACK);
+      g.fillRect(2, 2, 100, 50);
+      g.setColor(Color.white);
+      g.fillRect(6, 6, 92, 42);
+      g.setColor(Color.GREEN);
+      g.fillRect(6, 6, spawner.getHealth(), 42);
+      g.drawImage(img, x, Y, this);
+      spawner.draw(g, x, Y);
+      score.setText("Points: " + spawner.points);
+    }
+    else
+    {
+      score.setText("");
+      setBackground(Color.WHITE);
+      if(spawner.points >= 1)
+      {
+        win.setText("You win!");
+      }else{
+        win.setText("You Lose :(");
+      }
+      win.setFont(new Font("Monotype Corsiva",1,40));
+    }
   }
   
   public void actionPerformed(ActionEvent e){
@@ -64,15 +89,15 @@ public class Panel extends JPanel implements ActionListener, KeyListener
   }
   public void keyPressed(KeyEvent e) {
       if(e.getKeyCode() == 39){ // Right Arrow
-          speed = 5;
+          speed = spawner.playerSpeed;
       }else if(e.getKeyCode() == 37){ // Left Arrow
-          speed = -5;
+          speed = -spawner.playerSpeed;
       }
   }
   public void keyReleased(KeyEvent e) {
-      if(e.getKeyCode() == 39 && speed == 5){ // Right Arrow
+      if(e.getKeyCode() == 39 && speed == spawner.playerSpeed){ // Right Arrow
           speed = 0;
-      }else if(e.getKeyCode() == 37 && speed == -5){ // Left Arrow
+      }else if(e.getKeyCode() == 37 && speed == -spawner.playerSpeed){ // Left Arrow
           speed = 0;
       }
   }

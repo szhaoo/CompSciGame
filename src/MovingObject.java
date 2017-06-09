@@ -16,7 +16,7 @@ public abstract class MovingObject
   };
   public boolean detectHit(int x, int y)
   {
-    return (Math.abs(this.x - x) <= 10 && Math.abs(this.y - y) <= 10);
+    return (this.x - x <= 70 && this.x - x > 0 && this.y - y >= -35 && this.y - y < 0);
     
   }
 }
